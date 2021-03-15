@@ -7,6 +7,15 @@ present in a laboratory.
 The application models Category and Item as separate entities that are linked in a one-to-many
 relationship (One Category, many Items).
 
+## Technologies
+
+* **Spring Boot**: Framework for developing the REST application
+* **Gradle**: Build tool, uses the build.gradle file
+* **JUnit 5**: Unit Testing framework, along with **Spring Boot Starter Test**
+* **Spring Data JPA**: Persistence layer for interacting with the database
+* **H2 Database**: In memory database for ease of testing, can be replaced by a SQL DB like MySQL or MariaDB
+* **Tomcat**: The embedded container for running the application
+
 ## REST Endpoints
 
 The application exposes a set of APIs that implement the following functionalities
@@ -168,4 +177,5 @@ You can run the application from the IDE or via commandline using gradle
 * API's security using something like JWT tokens
 * Service registry e.g. `eureka`
 * Dockerize the application so that it's easier to deploy and would work well with container
-  orchestration tools like kubernetes 
+  orchestration tools like kubernetes
+* Dynamic configuration, using Spring Cloud Config Server, if needed
