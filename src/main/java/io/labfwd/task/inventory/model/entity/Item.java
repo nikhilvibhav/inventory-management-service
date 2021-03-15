@@ -1,15 +1,27 @@
 package io.labfwd.task.inventory.model.entity;
 
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.*;
-import java.util.List;
-
 /**
+ * Models the individual entities within a {@link Category} as Item
+ *
+ * <p>e.g. Hydrochloric Acid is an item under the chemicals category
+ *
  * @author Nikhil Vibhav
  */
 @Data
@@ -18,17 +30,22 @@ import java.util.List;
 @Entity(name = "item")
 public class Item {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private String name;
+  @Column(nullable = false)
+  private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "category_id", nullable = false)
+  private Category category;
 
-    @OneToMany(mappedBy = "item")
-    @Fetch(FetchMode.SUBSELECT)
-    private List<AttributeValue> attributeValues;
+  @OneToMany(
+      mappedBy = "item",
+      cascade = CascadeType.ALL,
+      orphanRemoval = true,
+      fetch = FetchType.LAZY)
+  @Fetch(FetchMode.SUBSELECT)
+  private List<AttributeValue> attributeValues;
 }

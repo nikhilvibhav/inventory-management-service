@@ -1,12 +1,20 @@
 package io.labfwd.task.inventory.model.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
 /**
+ * Models the {@link Attribute}'s values
+ *
  * @author Nikhil Vibhav
  */
 @Data
@@ -15,13 +23,19 @@ import javax.persistence.*;
 @Entity(name = "attribute_value")
 public class AttributeValue {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String value;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id", nullable = false)
-    private Item item;
+  @Column(nullable = false)
+  private String name;
+
+  @Column(nullable = false)
+  private String value;
+
+  private String uom;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "item_id", nullable = false)
+  private Item item;
 }
