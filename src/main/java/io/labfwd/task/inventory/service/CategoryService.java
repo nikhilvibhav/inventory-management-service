@@ -2,7 +2,6 @@ package io.labfwd.task.inventory.service;
 
 import io.labfwd.task.inventory.model.entity.Category;
 import io.labfwd.task.inventory.repository.CategoryRepository;
-import java.util.Optional;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,16 +31,5 @@ public class CategoryService {
   public Category createCategory(final Category categoryToSave) {
     log.debug("Saving Category: {}", categoryToSave);
     return repository.save(categoryToSave);
-  }
-
-  /**
-   * Finds a {@link Category} by the its name
-   *
-   * @param categoryName - the category name
-   * @return {@link Category} if it exists
-   */
-  public Optional<Category> findCategory(final String categoryName) {
-    log.debug("Finding Category: {}", categoryName);
-    return repository.findById(categoryName);
   }
 }

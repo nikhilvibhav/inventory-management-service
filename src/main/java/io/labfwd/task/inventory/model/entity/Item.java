@@ -13,7 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -39,6 +41,8 @@ public class Item {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "category_id", nullable = false)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
   private Category category;
 
   @OneToMany(

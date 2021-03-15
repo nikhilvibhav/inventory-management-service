@@ -10,7 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * Models the attributes in a {@link Category}
@@ -34,5 +36,7 @@ public class Attribute {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "category_id")
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
   private Category category;
 }

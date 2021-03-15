@@ -10,7 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * Models the {@link Attribute}'s values
@@ -37,5 +39,7 @@ public class AttributeValue {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "item_id", nullable = false)
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
   private Item item;
 }
