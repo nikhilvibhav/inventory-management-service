@@ -1,4 +1,5 @@
 # inventory-management-service
+[![Java CI with Gradle](https://github.com/nikhilvibhav/inventory-management-service/actions/workflows/gradle.yml/badge.svg?branch=main)](https://github.com/nikhilvibhav/inventory-management-service/actions/workflows/gradle.yml)
 
 Inventory Management Service is an application that exposes REST APIs to catalog the inventories
 present in a laboratory.
